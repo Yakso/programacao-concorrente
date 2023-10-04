@@ -1,0 +1,64 @@
+Na vastidão do mundo binário, onde zeros e uns dançam no éter digital,
+A programação concorrente, um jogo de sincronia genial,
+É uma matéria de encantos mil, uma jornada sem igual,
+Onde threads e processos, num balé cibernético, fazem seu carnaval.
+
+No reino do código, onde a lógica se entrelaça,
+A programação concorrente nos enche de graça,
+Com múltiplas tarefas, simultâneas, a avançar,
+É como um circo de bytes, no palco a brilhar.
+
+Os mutex e semáforos, nossos mestres de cerimônia,
+Controlam o acesso, com maestria, com harmonia,
+Enquanto os threads dançam, em sincronia perfeita,
+Criando um espetáculo de eficiência eleita.
+
+Na arena da memória compartilhada, o espetáculo se intensifica,
+Compartilhamento seguro, a regra que se aplica,
+Os dados se entrelaçam, sem medo de conflito,
+E a programação concorrente nos mostra seu rito.
+
+Os problemas clássicos, como o produtor e consumidor,
+São desafios que enfrentamos, com fervor,
+Threads cooperam, em uma dança enigmática,
+Para produzir e consumir, de forma democrática.
+
+E quando pensamos em paralelismo, nos maravilhamos,
+Com a capacidade de dividir tarefas, sem embaraços,
+Algoritmos que correm, em várias trilhas,
+Programação concorrente, um espetáculo de maravilhas.
+
+Mas não é só trabalho, nessa jornada divertida,
+Também encontramos diversão, na busca da saída,
+Com deadlock e race condition, desafios a superar,
+A programação concorrente nos faz pensar e criar.
+
+E quando a concorrência se torna uma corrida de velocidade,
+Os threads competem, em busca da eficiência,
+O paralelismo se torna um esporte de alta destreza,
+E a programação concorrente nos dá essa proeza.
+
+Então, que celebremos essa matéria fascinante,
+Onde a sincronia e a eficiência estão constantes,
+A programação concorrente, com sua magia infinda,
+É uma matéria super divertida, que nos fascina.
+
+Nas linhas de código, onde os sonhos se tecem,
+A programação concorrente é o palco onde cresce,
+Uma dança de bits, um espetáculo de arte,
+Que nos mostra que a tecnologia pode ser parte.
+
+Em cada linha, em cada thread, em cada bloco,
+A programação concorrente nos deixa em choque,
+Com sua complexidade, com sua diversão,
+É uma matéria que nos conquista, de coração.
+
+Então, programadores, celebremos com alegria,
+A programação concorrente, com toda sua magia,
+Uma matéria que nos desafia, que nos inspira,
+A criar um mundo digital, que nunca expire.
+
+Nas trilhas paralelas, onde os bits se entrelaçam,
+A programação concorrente nos deixa extasiados,
+É uma jornada fascinante, que nunca se acaba,
+Uma matéria super divertida, que sempre nos cativa.
