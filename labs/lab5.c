@@ -13,23 +13,28 @@ devem retirar as linhas do buffer e imprimi-las na saida padrao (mantendo a orde
 #include <semaphore.h>
 #include <unistd.h>
 
-#define QTD_LINHAS 10000000 //quantidade de linhas do arquivo
+#define QTD_LINHAS 100 //quantidade de linhas do arquivo
 
 // Variaveis globais
-char Buffer[QTD_LINHAS]; //buffer compartilhado
+char **Buffer; //buffer compartilhado
 char linhaRemovida[100]; //linha removida do buffer
 int nthreads; //número de threads  
 sem_t slotCheio, slotVazio; //semaforos para controle de slots cheios e vazios
-sem_t mutexCons; //semaforos para exclusao mutua entre as threads   
+sem_t mutex; //semaforos para exclusao mutua entre as threads   
 
 void Insere (char *linha) {
   static int in = 0;
   //aguarda slot vazio
   sem_wait(&slotVazio);
+  //exclusão mútua
+  sem_wait(&mutex);
   //insere linha do arquivo no buffer
+  //printf("Cheguei intacta: %s", linha);
   strcpy(Buffer[in], linha);
-  printf("Linha inserida: %s", Buffer[in]);
+  //printf("Linha inserida: %s", Buffer[in]);
   in = (in+1)%QTD_LINHAS;
+  //fim da exclusão mútua
+  sem_post(&mutex);
   //incrementa a qtde de slots cheios
   sem_post(&slotCheio);
 }
@@ -39,11 +44,12 @@ void Remove (void) {
   //aguarda slot cheio
   sem_wait(&slotCheio);
   //exclusao mutua entre consumidores
-  sem_wait(&mutexCons);
-  Buffer[out] = '\0';
+  sem_wait(&mutex);
+  printf("%s", Buffer[out]);
+  Buffer[out][0] = 0;
   out = (out+1)%QTD_LINHAS;
   //libera exclusao mutua entre consumidores
-  sem_post(&mutexCons);
+  sem_post(&mutex);
   //libera slot vazio 
   sem_post(&slotVazio);
 }
@@ -53,7 +59,7 @@ void produtor(char *arg) {
     FILE *arq;
     arq = fopen(arg, "r");
     //le linha a linha do arquivo
-    while(fgets(linha, 100, arq) != NULL) {
+    while(fgets(linha, 100, arq)) {
         //printf("Linha lida: %s", linha);
         Insere(linha);
     }
@@ -84,9 +90,15 @@ int main(int argc, char *argv[]) {
    nthreads = atoi(argv[1]);
    
   //inicia o semaforo binario
-  sem_init(&mutexCons, 0, 1);
+  sem_init(&mutex, 0, 1);
   sem_init(&slotCheio, 0, 0);
   sem_init(&slotVazio, 0, QTD_LINHAS);
+
+  Buffer = malloc(sizeof(char*)*QTD_LINHAS);
+
+  for(t=0; t<QTD_LINHAS; t++) {
+    Buffer[t] = malloc(sizeof(char)*100);
+  }
 
 
   for(t=0; t<nthreads; t++) {
@@ -101,6 +113,8 @@ int main(int argc, char *argv[]) {
       printf("--ERRO: pthread_create()\n"); exit(-1);
     }
   }
+
+  produtor(argv[2]);
   
   //--espera todas as threads terminarem
   for (t=0; t<nthreads; t++) 
@@ -108,7 +122,5 @@ int main(int argc, char *argv[]) {
          printf("--ERRO: pthread_join() \n"); exit(-1); 
     }
    
-  produtor(argv[2]);
   pthread_exit(NULL);
 }
-
